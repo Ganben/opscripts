@@ -13,5 +13,27 @@ curl https://getcaddy.com | bash -s personal
 
 caddy -conf /etc/Caddyfile
 
+# caddy as systemd
+sudo setcap cap_net_bind_service=+ep ./caddy
+
+# /etc/systemd/system/caddy.service
+[Unit]
+Description=Caddy webserver
+Documentation=https://caddyserver.com/
+After=network.target
+
+[Service]
+User=ccao
+#Group=some_group
+WorkingDirectory=/home/ccao/web/
+LimitNOFILE=4096
+PIDFile=/var/run/caddy/caddy.pid
+ExecStart=caddy -conf /etc/Caddyfile -pidfile=/var/run/caddy/caddy.pid
+Restart=on-failure
+StartLimitInterval=600
+
+[Install]
+WantedBy=multi-user.target
+
 # v2ray configs
 # TODO
