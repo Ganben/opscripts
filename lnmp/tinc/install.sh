@@ -12,8 +12,9 @@ tinc            655/udp    TINC"
 # create nteword
 # source:https://jordancrawford.kiwi/setting-up-tinc/
 
-
-
+# network name:
+mkdir myvpn
+cd myvpn
 # conf cloud with 10.0.0.1
 echo >> tinc.conf ""
 
@@ -55,3 +56,9 @@ sed -i '1s/^/Subnet = 10.20.30.2/32' hosts/home
 
 # then swap eachothers hosts/* file to tell each other
 # mesing: temporary not up
+
+#finally, command
+#
+# install service
+echo >> nets.boot "myvpn"
+service tinc start
