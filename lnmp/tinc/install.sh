@@ -62,3 +62,8 @@ sed -i '1s/^/Subnet = 10.20.30.2/32' hosts/home
 # install service
 echo >> nets.boot "myvpn"
 service tinc start
+
+# if updated hosts folder
+service tinc reload
+
+# if not specify subfold myvpn, just fine
