@@ -57,6 +57,8 @@ sed -i '1s/^/Subnet = 10.20.30.2/32' hosts/home
 # then swap eachothers hosts/* file to tell each other
 # mesing: temporary not up
 
+test:
+`tincd -n myvpn -D -d3`
 #finally, command
 #
 # install service
@@ -67,3 +69,5 @@ service tinc start
 service tinc reload
 
 # if not specify subfold myvpn, just fine
+for auto boot:
+`systemctl enable tinc@VPNNAME`
